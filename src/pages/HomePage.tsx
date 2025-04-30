@@ -14,11 +14,11 @@ import DynastyTimeline from '../components/ui/DynastyTimeline';
 const HomePage: React.FC = () => {
   const [selectedDynastyId, setSelectedDynastyId] = useState<string | undefined>(dynasties[0].id);
   const [activeSection, setActiveSection] = useState<'muslim' | 'mahajanapada'>('muslim');
-  
-  const featuredRulers = rulers.filter(ruler => 
+
+  const featuredRulers = rulers.filter(ruler =>
     ['akbar', 'alauddin-khalji', 'shah-jahan', 'razia-sultana'].includes(ruler.id)
   );
-  const featuredMonuments = monuments.filter(monument => 
+  const featuredMonuments = monuments.filter(monument =>
     ['taj-mahal', 'qutub-minar', 'red-fort'].includes(monument.id)
   );
 
@@ -45,6 +45,15 @@ const HomePage: React.FC = () => {
               >
                 {activeSection === 'muslim' ? 'View Mahajanapadas' : 'View Muslim Dynasties'}
               </button>
+              <Link to={"https://mahajanpada.vercel.app"}>
+                <button
+                  onClick={() => setActiveSection(activeSection === 'muslim' ? 'mahajanapada' : 'muslim')}
+                  className="px-6 py-3 bg-transparent hover:bg-white/10 text-white border border-white font-medium rounded-lg transition-colors"
+                >
+                  Go To Mahajanapadas
+                </button>
+              </Link>
+
             </div>
           </div>
         </div>
@@ -83,8 +92,8 @@ const HomePage: React.FC = () => {
                 </p>
               </div>
 
-              <DynastyTimeline 
-                onSelectDynasty={setSelectedDynastyId} 
+              <DynastyTimeline
+                onSelectDynasty={setSelectedDynastyId}
                 selectedDynastyId={selectedDynastyId}
               />
 
@@ -95,8 +104,8 @@ const HomePage: React.FC = () => {
               </div>
 
               <div className="text-center mt-12">
-                <Link 
-                  to="/timeline" 
+                <Link
+                  to="/timeline"
                   className="inline-flex items-center px-6 py-3 bg-green-700 hover:bg-green-800 text-white font-medium rounded-lg transition-colors"
                 >
                   View Complete Timeline
@@ -116,8 +125,8 @@ const HomePage: React.FC = () => {
                     Learn about the most significant Muslim rulers who shaped Indian history
                   </p>
                 </div>
-                <Link 
-                  to="/rulers" 
+                <Link
+                  to="/rulers"
                   className="inline-flex items-center text-green-700 hover:text-green-900 font-medium"
                 >
                   View All
@@ -143,8 +152,8 @@ const HomePage: React.FC = () => {
                     Explore the architectural marvels built during Muslim rule in India
                   </p>
                 </div>
-                <Link 
-                  to="/monuments" 
+                <Link
+                  to="/monuments"
                   className="inline-flex items-center text-amber-700 hover:text-amber-900 font-medium"
                 >
                   View All
@@ -185,7 +194,7 @@ const HomePage: React.FC = () => {
                 Explore Timeline <ArrowRight size={16} className="ml-1" />
               </Link>
             </div>
-            
+
             <div className="bg-white rounded-xl p-6 shadow-md">
               <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4">
                 <MapPin className="text-amber-700" size={24} />
@@ -198,7 +207,7 @@ const HomePage: React.FC = () => {
                 Explore Monuments <ArrowRight size={16} className="ml-1" />
               </Link>
             </div>
-            
+
             <div className="bg-white rounded-xl p-6 shadow-md">
               <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
                 <Crown className="text-blue-700" size={24} />
